@@ -14,6 +14,7 @@ SOURCES += \
     draw.cpp \
     main.cpp \
     mainwindow.cpp \
+    movable.cpp \
     my_gl.cpp \
 #    simpleshape.cpp \
     tile.cpp
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     draw.h \
     mainwindow.h \
+    movable.h \
     my_gl.h \
 #    simpleshape.h \
     tile.h
@@ -28,7 +30,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-LIBS += -lopengl32
+LIBS += -lGL
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
