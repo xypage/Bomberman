@@ -15,17 +15,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     my_gl.cpp \
-    simpleshape.cpp \
-    tile.cpp \
-    vec.cpp
+#    simpleshape.cpp \
+    tile.cpp
 
 HEADERS += \
     draw.h \
     mainwindow.h \
     my_gl.h \
-    simpleshape.h \
-    tile.h \
-    vec.h
+#    simpleshape.h \
+    tile.h
 
 FORMS += \
     mainwindow.ui

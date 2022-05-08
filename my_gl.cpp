@@ -1,5 +1,8 @@
 #include "my_gl.h"
 
+#include "tile.h"
+#include "draw.h"
+
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
 
@@ -17,14 +20,26 @@ void MyGL::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
+//    Draw(1,1);
+//    glBegin(GL_POLYGON);
+//        glColor3f(0.0f, 1.0f, 0.0f);
+//        glVertex2f(0.0f, 1.0f);
+//        glVertex2f(1.0f, 1.0f);
+//        glVertex2f(1.0f, 0.0f);
+//        glVertex2f(0.0f, 0.0f);
+//     glEnd();
 
-    glBegin(GL_POLYGON);
-        glColor3f(0.0f, 1.0f, 0.0f);
-        glVertex2f(0.0f, 1.0f);
-        glVertex2f(1.0f, 1.0f);
-        glVertex2f(1.0f, 0.0f);
-        glVertex2f(0.0f, 0.0f);
-     glEnd();
+//    Draw::line(Vec(0, 1), Vec(1, 0));
+    Tile t;
+//    t.setSideLength(0.25f);
+    t.draw(0.25f, 0.25f);
+
+
+//    glBegin(GL_LINE);
+//        glColor3f(1.0f, 1.0f, 0.0f);
+//        glVertex2f(0.0f, 1.0f);
+//        glVertex2f(1.0f, 1.0f);
+//     glEnd();
 
     glFlush();
 }

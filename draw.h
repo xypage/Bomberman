@@ -1,19 +1,20 @@
 #ifndef DRAW_H
 #define DRAW_H
 
-enum RectMode {CENTER, CORNER};
+#include "vec.h"
+#include <QtOpenGL>
 
 class Draw
 {
 private:
-    // To control whether you draw from corner or center
-    RectMode rm;
+    // height/width of the grid
+    static int width, height;
 public:
-    Draw();
-    void drawLine();
-    void drawRectangle();
-    void drawSquare();
-    void drawEllipse();
+    Draw(int, int);
+    static void line(const Vec&, const Vec&);
+    static void rectangle();
+    static void square();
+    static void ellipse();
 };
 
 #endif // DRAW_H

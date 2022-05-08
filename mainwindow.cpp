@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include "my_gl.h"
 
+#include "draw.h"
+#include "vec.h"
+
 #include <QKeyEvent>
 #include <QDebug>
 
