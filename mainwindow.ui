@@ -10,8 +10,17 @@
     <height>616</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Bomberman</string>
+  </property>
+  <property name="whatsThis">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="playerLabel">
@@ -115,7 +124,6 @@
    <zorder>bombLabel</zorder>
    <zorder>enemyLabel</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setFixedSize(QSize(600, 616));
 
     character = Movable(300, 300, ":/img/BombermanUltimate2.png", ui->playerLabel);
     character.setLives(3, ui->lives);
