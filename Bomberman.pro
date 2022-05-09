@@ -14,6 +14,7 @@ SOURCES += \
     bomb.cpp \
     draw.cpp \
     grid.cpp \
+    levels.cpp \
     main.cpp \
     mainwindow.cpp \
     movable.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     bomb.h \
     draw.h \
     grid.h \
+    levels.h \
     mainwindow.h \
     movable.h \
     my_gl.h \
@@ -41,4 +43,8 @@ else:  unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    Levels.qrc \
     images.qrc
+
+DISTFILES += \
+    levels.txt

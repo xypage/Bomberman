@@ -3,6 +3,7 @@
 #include <QKeyEvent>
 #include "tile.h"
 #include "bomb.h"
+#include "grid.h"
 #include <QGraphicsOpacityEffect>
 
 Bomb::Bomb(){

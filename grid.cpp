@@ -1,6 +1,8 @@
 #include "grid.h"
 #include <QDebug>
 
+int Grid::rows, Grid::cols;
+
 Tile* temporaryTileConstructor() {
     static int colorCounter = 0;
     return new Tile(TileColor((colorCounter++)%4), false, false);
@@ -18,8 +20,10 @@ Grid::~Grid() {
 }
 
 
-Grid::Grid(int size): rows(size), cols(size)
+Grid::Grid(int size)
 {
+    rows = size;
+    cols = size;
     tiles = new Tile**[size];
     for(int y = 0; y < size; y++) {
         tiles[y] = new Tile*[size];
@@ -37,8 +41,10 @@ Grid::Grid(int size): rows(size), cols(size)
     Tile::setSideLength(2.0f / size);
 }
 
-Grid::Grid(int height, int width): rows(height), cols(width)
+Grid::Grid(int height, int width)
 {
+    rows = height;
+    cols = height;
     tiles = new Tile**[height];
     for(int y = 0; y < height; y++) {
         tiles[y] = new Tile*[width];
@@ -48,6 +54,30 @@ Grid::Grid(int height, int width): rows(height), cols(width)
     }
     Tile::setSideLength(2.0f / height);
 }
+Grid::Grid(int size, QString level)
+{
+    rows = size;
+    cols = size;
+    qDebug() << "Creating from string";
+    tiles = new Tile**[size];
+    for(int y = 0; y < size; y++) {
+        tiles[y] = new Tile*[size];
+        for(int x = 0; x < size; x++) {
+            QChar current = level[y * size + x];
+            if(current == 'b' || current == 'B') {
+                tiles[y][x] = new Breakable();
+            } else if(current == 'i' || current == 'I') {
+                tiles[y][x] = new Invincible();
+            } else if(current == 'e' || current == 'E') {
+                tiles[y][x] = temporaryTileConstructor();
+            } else {
+                tiles[y][x] = temporaryTileConstructor();
+            }
+        }
+    }
+
+}
+
 
 void Grid::draw() {
     for(int y = 0; y < rows; y++) {
