@@ -10,6 +10,7 @@
 #include "movable.h"
 
 Movable character;
+Movable bomb;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     character = Movable(0.5, 0.5, ":/img/BombermanUltimate2.png", ui->playerLabel);
+//    bomb = Movable(character.getX(), character.getY(), ":/img/Bomb.png", ui->BombLabel);
 }
 
 MainWindow::~MainWindow()

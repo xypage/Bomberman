@@ -19,8 +19,8 @@
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>521</width>
-      <height>571</height>
+      <width>101</width>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -76,9 +76,25 @@
      <string>Score: lots</string>
     </property>
    </widget>
+   <widget class="QLabel" name="BombLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
+    </layout>
+   </widget>
    <zorder>openGLWidget</zorder>
    <zorder>playerLabel</zorder>
    <zorder>label</zorder>
+   <zorder>BombLabel</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
