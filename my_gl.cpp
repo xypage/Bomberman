@@ -5,6 +5,7 @@
 #include "grid.h"
 #include "draw.h"
 #include "mainwindow.h"
+#include "levels.h"
 
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
@@ -34,7 +35,9 @@ void MyGL::paintGL()
 //    Tile t;
 
 //    t.draw(0.25f + ((float) i) / 4000, 0.25f + ((float) i) / 4000);
-    Grid g = Grid(10);
+    Levels l;
+    qDebug() << "Done with levels";
+    Grid g = l.getLevel(0);
     g.draw();
 
     glFlush();

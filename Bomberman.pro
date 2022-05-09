@@ -13,6 +13,7 @@ CONFIG += c++17
 SOURCES += \
     draw.cpp \
     grid.cpp \
+    levels.cpp \
     main.cpp \
     mainwindow.cpp \
     movable.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     draw.h \
     grid.h \
+    levels.h \
     mainwindow.h \
     movable.h \
     my_gl.h \
@@ -39,4 +41,8 @@ else:  unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    Levels.qrc \
     images.qrc
+
+DISTFILES += \
+    levels.txt
