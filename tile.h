@@ -12,25 +12,37 @@ protected:
     // solid means you can't walk through it
     bool solid;
     // destructible means it can be blown up
-    bool destructible;
+    bool breakable;
     TileColor tc;
     // since tiles will be squares on a grid, each will be the same size, so we can just
     // store their side length as a static member of the class
     static float sideLength;
 public:
     Tile();
-    Tile(TileColor, bool, bool);
+    Tile(bool solid, bool breakable); // only meant to be used for tiles drawing it
+    Tile(TileColor, bool solid, bool breakable);
 
     bool isSolid();
-    bool isDestructible();
+    bool isBreakable();
 
-    virtual void draw(float x, float y);
-
+    virtual void draw(float y, float x);
 
     static void setSideLength(float);
     static float getSideLength();
 };
 
-//float Tile::sideLength = 0.25f;
+class Breakable: public Tile {
+public:
+    Breakable();
+
+    virtual void draw(float y, float x);
+};
+
+class Invincible: public Tile {
+public:
+    Invincible();
+
+    virtual void draw(float y, float x);
+};
 
 #endif // TILE_H

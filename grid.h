@@ -7,12 +7,13 @@ class Grid
 {
 protected:
     int rows, cols;
-    Tile** tiles;
+    Tile*** tiles;
 //    QVector3D backgroundColor;
 public:
     Grid();
     Grid(int); // square
     Grid(int, int); // rectangle
+    ~Grid();
 
     void draw();
 };
