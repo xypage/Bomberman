@@ -10,8 +10,17 @@
     <height>616</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Bomberman</string>
+  </property>
+  <property name="whatsThis">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="playerLabel">
@@ -76,7 +85,7 @@
      <string>Score: lots</string>
     </property>
    </widget>
-   <widget class="QLabel" name="BombLabel">
+   <widget class="QLabel" name="bombLabel">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -91,12 +100,30 @@
      </property>
     </layout>
    </widget>
+   <widget class="QLabel" name="enemyLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>450</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+	background: white
+}</string>
+    </property>
+    <property name="text">
+     <string>Enemy</string>
+    </property>
+   </widget>
    <zorder>openGLWidget</zorder>
    <zorder>playerLabel</zorder>
    <zorder>lives</zorder>
-   <zorder>BombLabel</zorder>
+   <zorder>bombLabel</zorder>
+   <zorder>enemyLabel</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
