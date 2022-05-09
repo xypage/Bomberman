@@ -6,6 +6,8 @@
 
 Ui::MainWindow ui;
 
+Movable::Movable() {}
+
 Movable::Movable(float x, float y, QString filename, QLabel* label){
     QPixmap pixmapObject(filename);
     label->setPixmap(pixmapObject);

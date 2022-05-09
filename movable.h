@@ -12,6 +12,7 @@ private:
     float x, y;
     QLabel* label;
 public:
+    Movable();
     Movable(float x, float y, QString filename, QLabel* label);
     float getX(); // Returns x
     float getY(); // Returns y
