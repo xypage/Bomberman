@@ -19,8 +19,8 @@
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>521</width>
-      <height>571</height>
+      <width>101</width>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -57,7 +57,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lives">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -76,9 +76,44 @@
      <string>Score: lots</string>
     </property>
    </widget>
+   <widget class="QLabel" name="bombLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="enemyLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>450</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+	background: white
+}</string>
+    </property>
+    <property name="text">
+     <string>Enemy</string>
+    </property>
+   </widget>
    <zorder>openGLWidget</zorder>
    <zorder>playerLabel</zorder>
-   <zorder>label</zorder>
+   <zorder>lives</zorder>
+   <zorder>bombLabel</zorder>
+   <zorder>enemyLabel</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -8,10 +8,10 @@
 class Movable{
 private:
     // x and y position of the image
-    static int width, height;
+    static int width, height, lives;
     float x, y;
     QLabel* label;
-    bool breakablity;
+    QString displayLives;
 
 public:
     Movable();
@@ -19,8 +19,7 @@ public:
     float getX(); // Returns x
     float getY(); // Returns y
     void move(float x, float y);
-    void setBreak(bool breakability);
-    bool breakable();
+    void setLives(int lives, QLabel* label);
     void hitbox(); //Combination ofo width + x, and y + height?
 
 };
