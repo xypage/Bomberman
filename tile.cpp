@@ -4,6 +4,8 @@
 
 float Tile::sideLength;
 
+float Tile::sideLength;
+
 Tile::Tile():
     solid(false), destructible(false), tc(Red) {};
 Tile::Tile(TileColor _tc, bool _solid, bool _destructible):

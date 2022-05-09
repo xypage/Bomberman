@@ -16,7 +16,6 @@ SOURCES += \
     mainwindow.cpp \
     movable.cpp \
     my_gl.cpp \
-#    simpleshape.cpp \
     tile.cpp
 
 HEADERS += \
@@ -24,7 +23,6 @@ HEADERS += \
     mainwindow.h \
     movable.h \
     my_gl.h \
-#    simpleshape.h \
     tile.h
 
 FORMS += \
@@ -38,7 +36,7 @@ lopengl32 {
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
+else:  unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
