@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    Movable character(0.5, 0.5, "/home/andy/BombermanUltimate2.png", ui->playerLabel);
+    Movable character(0.5, 0.5, ":/img/BombermanUltimate2.png", ui->playerLabel);
     float y_inc = 0.0, x_inc = 0.0;
 
     if (event->key() == Qt::Key_W) {
