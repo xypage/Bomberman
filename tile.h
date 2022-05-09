@@ -28,6 +28,7 @@ public:
 
 
     static void setSideLength(float);
+    static float getSideLength();
 };
 
 //float Tile::sideLength = 0.25f;

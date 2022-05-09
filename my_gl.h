@@ -11,11 +11,18 @@ class MyGL: public QOpenGLWidget
     Q_OBJECT
 public:
     explicit MyGL(QWidget *parent = 0);
+    ~MyGL();
 
 protected:
     void initializeGL();
     void paintGL();
-    void resizeGL(int w, int h);
+    void timerEvent(QTimerEvent *event);
+
+private:
+    int timerId;
+
+private slots:
+    void update();
 };
 
 #endif // MY_GL_H

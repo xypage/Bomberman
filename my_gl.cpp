@@ -1,54 +1,52 @@
+#include<QDebug>
 #include "my_gl.h"
 
 #include "tile.h"
+#include "grid.h"
 #include "draw.h"
+#include "mainwindow.h"
 
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
+//    timerId = startTimer(30); // ~33 fps
+}
 
+MyGL::~MyGL() {
+    killTimer(timerId);
 }
 
 void MyGL::initializeGL()
 {
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHT0);
+    glClearColor(0.15, 0.15, 0.15, 0.0);
 }
 
+
+int i = 0;
 void MyGL::paintGL()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    qDebug() << "Calling paintGL()";
+    glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
 
 
-    Tile::setSideLength(0.25f);
+//    Tile::setSideLength(0.25f);
 
-    Tile t;
+//    Tile t;
 
-    t.draw(0.25f, 0.25f);
+//    t.draw(0.25f + ((float) i) / 4000, 0.25f + ((float) i) / 4000);
+    Grid g = Grid(10);
+    g.draw();
 
     glFlush();
 }
 
-void MyGL::resizeGL(int w, int h)
+void MyGL::update() {
+//    qDebug() << "Calling update()";
+    paintGL();
+    i = (i + 1) % 1000;
+}
+
+void MyGL::timerEvent(QTimerEvent *event)
 {
-    //set viewport
-    glViewport(0,0,w,h);
-
-    //initialize projection matrix
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    /* multiply the current matrix by a perspective matrix
-     * void glFrustum(GLdouble left, GLdouble right,GLdouble bottom,GLdouble top,GLdouble nearVal,GLdouble farVal);
-     * left, right: Specify the coordinates for the left and right vertical clipping planes.
-     * bottom, top: Specify the coordinates for the bottom and top horizontal clipping planes.
-     * nearVal, farVal: Specify the distances to the near and far depth clipping planes. Both distances must be positive.
-     */
-//    glFrustum(-2, +2, -2, +2, 4.0, 10.0);
-
-    //initialize modelview matrix
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
+    update();
 }

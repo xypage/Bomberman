@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     character = Movable(0.5, 0.5, "C:\\Users\\yax5\\Pictures\\monke (Custom).jpg", ui->playerLabel);
-
 }
 
 MainWindow::~MainWindow()

@@ -21,7 +21,6 @@ public:
 
     void keyPressEvent(QKeyEvent *);
 
-private slots:
 
 private:
     Ui::MainWindow *ui;
