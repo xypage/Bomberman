@@ -1,10 +1,12 @@
 #include "tile.h"
 #include <GL/gl.h>
 
+float Tile::sideLength;
+
 Tile::Tile():
-    solid(false), destructible(false), tc(Red), sideLength(0.25f) {};
+    solid(false), destructible(false), tc(Red) {};
 Tile::Tile(TileColor _tc, bool _solid, bool _destructible):
-    solid(_solid), destructible(_destructible), tc(_tc), sideLength(0.25f) {}
+    solid(_solid), destructible(_destructible), tc(_tc) {}
 
 bool Tile::isSolid() {
     return solid;
@@ -14,7 +16,7 @@ bool Tile::isDestructible() {
 }
 
 void Tile::draw(float x, float y) {
-        glBegin(GL_POLYGON);
+        glBegin(GL_LINE_LOOP);
             if(this->tc == Red) {
                 glColor3f(1.0f, 0.0f, 0.0f);
             } else if(this->tc == Blue) {
@@ -31,6 +33,6 @@ void Tile::draw(float x, float y) {
          glEnd();
 }
 
-//void Tile::setSideLength(float _sideLength) {
-//    Tile::sideLength = _sideLength;
-//}
+void Tile::setSideLength(float _sideLength) {
+    Tile::sideLength = _sideLength;
+}

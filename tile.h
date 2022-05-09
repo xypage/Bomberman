@@ -14,10 +14,10 @@ protected:
     // destructible means it can be blown up
     bool destructible;
     TileColor tc;
-public:
     // since tiles will be squares on a grid, each will be the same size, so we can just
     // store their side length as a static member of the class
-    float sideLength;
+    static float sideLength;
+public:
     Tile();
     Tile(TileColor, bool, bool);
 
@@ -25,7 +25,9 @@ public:
     bool isDestructible();
 
     virtual void draw(float x, float y);
-    void setSideLength(float);
+
+
+    static void setSideLength(float);
 };
 
 //float Tile::sideLength = 0.25f;

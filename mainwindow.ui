@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>600</width>
+    <height>616</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,9 +55,29 @@
      <string>Score: lots</string>
     </property>
    </widget>
+   <widget class="MyGL" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>16</y>
+      <width>600</width>
+      <height>600</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>openGLWidget</zorder>
+   <zorder>playerLabel</zorder>
+   <zorder>label</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyGL</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">my_gl.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
