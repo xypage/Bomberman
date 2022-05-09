@@ -26,6 +26,14 @@ void Movable::move(float x, float y){
     label->move(QPoint(label->x() + x, label->y() + y));
 };
 
+void Movable::setBreak(bool breakability){
+    this -> breakablity = breakability;
+};
+
+bool Movable::breakable(){
+    return breakablity;
+};
+
 void Movable::hitbox(){
 
 };

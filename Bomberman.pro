@@ -30,9 +30,16 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-LIBS += -lGL
+lopengl32 {
+    LIBS += -lopengl32
+} else {
+    LIBS += -lGL
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    images.qrc

@@ -11,12 +11,16 @@ private:
     static int width, height;
     float x, y;
     QLabel* label;
+    bool breakablity;
+
 public:
     Movable();
     Movable(float x, float y, QString filename, QLabel* label);
     float getX(); // Returns x
     float getY(); // Returns y
     void move(float x, float y);
+    void setBreak(bool breakability);
+    bool breakable();
     void hitbox(); //Combination ofo width + x, and y + height?
 
 };
