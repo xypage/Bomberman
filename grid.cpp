@@ -89,3 +89,10 @@ void Grid::draw() {
         }
     }
 }
+
+int Grid::getWidth() {
+    return cols;
+}
+int Grid::getHeight() {
+    return rows;
+}
