@@ -32,16 +32,21 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     float y_inc = 0.0, x_inc = 0.0;
 
     if (event->key() == Qt::Key_W) {
-        y_inc = -5.0f;
+        if (character.getY() > 10)
+            y_inc = -5.0f;
     }
     if (event->key() == Qt::Key_S) {
-        y_inc = 5.0f;
+        if (character.getY() + 90 < 595)
+            y_inc = 5.0f;
     }
     if (event->key() == Qt::Key_A) {
-        x_inc = -5.0f;
+        if (character.getX() > -20)
+            x_inc = -5.0f;
+                //setPos(x()-5,y());
     }
     if (event->key() == Qt::Key_D) {
-        x_inc = 5.0f;
+        if (character.getX() + 100 < 615)
+             x_inc = 5.0f;
     }
     character.move(x_inc, y_inc);
 }

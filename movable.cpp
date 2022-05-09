@@ -24,7 +24,7 @@ float Movable::getX(){
 };
 
 float Movable::getY(){
-    return label->x();
+    return label->y();
 };
 
 void Movable::move(float x, float y){
