@@ -12,6 +12,7 @@ CONFIG += c++17
 
 SOURCES += \
     draw.cpp \
+    grid.cpp \
     main.cpp \
     mainwindow.cpp \
     movable.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     draw.h \
+    grid.h \
     mainwindow.h \
     movable.h \
     my_gl.h \
@@ -28,11 +30,8 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-lopengl32 {
-    LIBS += -lopengl32
-} else {
-    LIBS += -lGL
-}
+win32: LIBS += -lopengl32
+qnx: -lGL
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
