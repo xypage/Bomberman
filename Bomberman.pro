@@ -30,7 +30,11 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-LIBS += -lGL
+lopengl32 {
+    LIBS += -lopengl32
+} else {
+    LIBS += -lGL
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
