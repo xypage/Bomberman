@@ -8,14 +8,16 @@
 class Movable{
 private:
     // x and y position of the image
-    static int x, y, width, height;
+    static int width, height;
+    float x, y;
+    QLabel* label;
 public:
-    Movable(int x, int y, QString filename, QLabel label);
-    int getX(); // Returns x
-    int getY(); // Returns y
-    void setX(int x);
-    void setY(int y);
+    Movable(float x, float y, QString filename, QLabel* label);
+    float getX(); // Returns x
+    float getY(); // Returns y
+    void move(float x, float y);
     void hitbox(); //Combination ofo width + x, and y + height?
+
 };
 
 #endif // MOVABLE_H

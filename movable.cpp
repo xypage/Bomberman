@@ -1,29 +1,29 @@
 #include "movable.h"
 
-//#include "mainwindow.h"
-//#include "ui_mainwindow.h"
-//#include <QKeyEvent>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <QKeyEvent>
 
+Ui::MainWindow ui;
 
-Movable::Movable(int x, int y, QString filename, QLabel label){
+Movable::Movable(float x, float y, QString filename, QLabel* label){
     QPixmap pixmapObject(filename);
-//    ui->character->setPixmap(pixmapObject);
+    label->setPixmap(pixmapObject);
+    this -> label = label;
 };
 
-int Movable::getX(){
-
+float Movable::getX(){
+    return label->x();
 };
 
-int Movable::getY(){
-
+float Movable::getY(){
+    return label->x();
 };
 
-void Movable::setX(int x){
-
+void Movable::move(float x, float y){
+    label->move(QPoint(label->x() + x, label->y() + y));
 };
-void Movable::setY(int y){
 
-};
 void Movable::hitbox(){
 
 };

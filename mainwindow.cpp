@@ -7,7 +7,7 @@
 
 #include <QKeyEvent>
 #include <QDebug>
-
+#include "movable.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,8 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    float yMove = ui->playerLabel->y();
-    float xMove = ui->playerLabel->x();
+    Movable character(0.5, 0.5, "/home/andy/BombermanUltimate2.png", ui->playerLabel);
     float y_inc = 0.0, x_inc = 0.0;
 
     if (event->key() == Qt::Key_W) {
@@ -40,6 +39,5 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_D) {
         x_inc = 5.0f;
     }
-
-    ui->playerLabel->move(QPoint(xMove + x_inc, yMove + y_inc));
+    character.move(x_inc, y_inc);
 }
