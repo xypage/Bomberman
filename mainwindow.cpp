@@ -8,18 +8,18 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include "movable.h"
+#include "bomb.h"
 
 Movable character;
-Movable bomb;
+Bomb bomb;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    character = Movable(300, 300, ":/img/BombermanUltimate2.png", ui->playerLabel);
+    character = Movable(0, 0, ":/img/BombermanUltimate2.png", ui->playerLabel);
     character.setLives(3, ui->lives);
-//    bomb = Movable(character.getX(), character.getY(), ":/img/Bomb.png", ui->BombLabel);
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +42,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     if (event->key() == Qt::Key_D) {
         x_inc = 5.0f;
+    }
+    if (event->key() == Qt::Key_Space) {
+        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Bomb.png", ui->BombLabel);
+        bomb.explode();
     }
     character.move(x_inc, y_inc);
 }
