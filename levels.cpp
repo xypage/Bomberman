@@ -37,7 +37,7 @@ Levels::~Levels() {
 }
 
 Grid* Levels::getLevel(int level) {
-    qDebug() << levels.size() << level;
+//    qDebug() << levels.size() << level;
     if(levels.size() > level) {
         height = levels[level]->getRows();
         width = levels[level]->getCols();

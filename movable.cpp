@@ -32,8 +32,20 @@ float Movable::getY(){
 
 void Movable::move(float x, float y){
     label->move(QPoint(label->x() + x, label->y() + y));
-    tileX = (int) ((getX() + label->width() / 2.0f) * Levels::getWidth() / width);
-    tileY = (int) ((getY() - 16 + label->height() / 2.0f) * Levels::getHeight() / (height - 16));
+
+//    leftEdge = (int) (( 20 + getX()) * Levels::getWidth() / width);
+//    rightEdge = (int) ((getX() + label->width()/2) * Levels::getWidth() / width);
+//    bottomEdge = (int) ((getY()) * Levels::getHeight() / (height - 16));
+//    topEdge = (int) ((getY() - label->height() + 20) * Levels::getHeight() / (height - 16));
+    float centerX = getX() + (label->width() / 2.0f);
+    float centerY = getY() + label->height() / 2.0f - 16;
+    tileX = (int) (centerX * Levels::getWidth() / width);
+    tileY = (int) (centerY * Levels::getHeight() / height);
+
+    leftEdge = (int) ((centerX - 20) * Levels::getWidth() / width);
+    rightEdge = (int) ((centerX + 20) * Levels::getWidth() / width);
+    topEdge = (int) ((centerY - 25) * Levels::getHeight() / height);
+    bottomEdge = (int) ((centerY + 25) * Levels::getHeight() / height);
 };
 
 void Movable::setLives(int lives, QLabel* label){
@@ -49,6 +61,10 @@ int Movable::getTileX(){
 
 int Movable::getTileY(){
     return tileY;
+}
+
+QLabel* Movable::getLabel() {
+    return this->label;
 }
 
 void Movable::hitbox(){

@@ -15,6 +15,7 @@ private:
     QString displayLives;
 
 public:
+    int leftEdge, rightEdge, topEdge, bottomEdge;
     Movable();
     Movable(float x, float y, QString filename, QLabel* label, float height, float width);
     float getX(); // Returns x
@@ -24,6 +25,7 @@ public:
     void hitbox(); //Combination ofo width + x, and y + height?
     int getTileX();
     int getTileY();
+    QLabel* getLabel();
 };
 
 #endif // MOVABLE_H

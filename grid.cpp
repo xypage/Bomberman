@@ -84,7 +84,7 @@ void Grid::draw() {
             float vert = 2.0f * y / rows - 1 + sideLength;
             float hor = 2.0f * x / cols - 1 + sideLength;
 //            qDebug() << vert << " " << hor;
-            tiles[rows - 1 - y][cols - 1 - x]->draw(vert, hor);
+            tiles[rows - 1 - y][x]->draw(vert, hor);
         }
     }
 }
