@@ -77,6 +77,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         moveToStart();
     }
 
+    if(event->key() == Qt::Key_Q) {
+        close();
+    }
+
     character.hitbox(enemyCharacter, ui->lives);
 
     if (event->key() == Qt::Key_Up) {
