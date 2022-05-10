@@ -6,21 +6,21 @@
 class Grid
 {
 protected:
-    static int rows, cols;
+    int rows, cols;
     Tile*** tiles;
 //    QVector3D backgroundColor;
 public:
     Grid();
     Grid(int); // square
     Grid(int, int); // rectangle
-    Grid(int, QString);
-    Grid(int, int, QString);
+    Grid(int, QList<QByteArray>);
+    Grid(int, int, QByteArray);
     ~Grid();
 
 
     void draw();
-    static int getWidth();
-    static int getHeight();
+    int getRows();
+    int getCols();
 };
 
 #endif // GRID_H

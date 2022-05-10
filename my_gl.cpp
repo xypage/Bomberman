@@ -37,8 +37,9 @@ void MyGL::paintGL()
 //    t.draw(0.25f + ((float) i) / 4000, 0.25f + ((float) i) / 4000);
     Levels l;
     qDebug() << "Done with levels";
-    Grid g = l.getLevel(0);
-    g.draw();
+    Grid* g = l.getLevel(1);
+    qDebug() << "got level 0";
+    g->draw();
 
     glFlush();
 }

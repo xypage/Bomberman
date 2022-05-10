@@ -16,31 +16,31 @@ protected:
     TileColor tc;
     // since tiles will be squares on a grid, each will be the same size, so we can just
     // store their side length as a static member of the class
-    static float sideLength;
+    float sideLength;
 public:
     Tile();
-    Tile(bool solid, bool breakable); // only meant to be used for tiles drawing it
-    Tile(TileColor, bool solid, bool breakable);
+    Tile(bool solid, bool breakable, float sideLength); // only meant to be used for tiles drawing it
+    Tile(TileColor, bool solid, bool breakable, float sideLength);
 
     bool isSolid();
     bool isBreakable();
 
     virtual void draw(float y, float x);
 
-    static void setSideLength(float);
-    static float getSideLength();
+    void setSideLength(float);
+    float getSideLength();
 };
 
 class Breakable: public Tile {
 public:
-    Breakable();
+    Breakable(float sideLength);
 
     virtual void draw(float y, float x);
 };
 
 class Invincible: public Tile {
 public:
-    Invincible();
+    Invincible(float sideLength);
 
     virtual void draw(float y, float x);
 };

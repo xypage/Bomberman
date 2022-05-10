@@ -2,14 +2,12 @@
 #include <GL/gl.h>
 #include <QDebug>
 
-float Tile::sideLength;
-
 Tile::Tile():
     solid(false), breakable(false), tc(Red) {};
-Tile::Tile(TileColor _tc, bool _solid, bool _breakable):
-    solid(_solid), breakable(_breakable), tc(_tc) {}
-Tile::Tile(bool _solid, bool _breakable):
-    solid(_solid), breakable(_breakable) {}
+Tile::Tile(TileColor _tc, bool _solid, bool _breakable, float _sideLength):
+    solid(_solid), breakable(_breakable), tc(_tc), sideLength(_sideLength) {}
+Tile::Tile(bool _solid, bool _breakable, float _sideLength):
+    solid(_solid), breakable(_breakable), sideLength(_sideLength) {}
 
 bool Tile::isSolid() {
     return solid;
@@ -39,14 +37,14 @@ void Tile::draw(float y, float x) {
 }
 
 void Tile::setSideLength(float _sideLength) {
-    Tile::sideLength = _sideLength;
+    sideLength = _sideLength;
 }
 float Tile::getSideLength() {
-    return Tile::sideLength;
+    return sideLength;
 }
 
-void drawBrick(float x, float y, float r1, float g1, float b1, float r2, float g2, float b2) {
-    float full = Tile::getSideLength();
+void drawBrick(float x, float y, float sideLength, float r1, float g1, float b1, float r2, float g2, float b2) {
+    float full = sideLength;
     glBegin(GL_POLYGON);
     glColor3f(r1, g1, b1);
         glVertex2f(x             , y             ); // top right
@@ -107,15 +105,15 @@ void drawBrick(float x, float y, float r1, float g1, float b1, float r2, float g
         glVertex2f(x - quarter, y - full);
     glEnd();
 }
-Breakable::Breakable(): Tile(true, true) {};
+Breakable::Breakable(float _sideLength): Tile(true, true, _sideLength) {};
 
 void Breakable::draw(float y, float x) {
- drawBrick(x, y, 0.6784313725, 0.1764705882, 0.0392156863, 0.7686274510, 0.7843137255, 0.8078431373);
+ drawBrick(x, y, sideLength, 0.6784313725, 0.1764705882, 0.0392156863, 0.7686274510, 0.7843137255, 0.8078431373);
 }
 
-Invincible::Invincible(): Tile(true, false) {};
+Invincible::Invincible(float _sideLength): Tile(true, false, _sideLength) {};
 
 
 void Invincible::draw(float y, float x) {
-    drawBrick(x, y, 0.3137254902, 0.3137254902, 0.3137254902, 0.7686274510, 0.7843137255, 0.8078431373);
+    drawBrick(x, y, sideLength, 0.3137254902, 0.3137254902, 0.3137254902, 0.7686274510, 0.7843137255, 0.8078431373);
 }
