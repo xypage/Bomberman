@@ -41,24 +41,27 @@ void MyGL::initializeGL()
 void MyGL::paintGL()
 {
 //    qDebug() << "Calling paintGL()";
-    glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
-    g->draw();
+
+    glClearColor(0.15, 0.15, 0.15, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glFlush();
+
+    LevelsWrapper::l->getLevel()->draw();
+
+
+//    glFlush();
 }
 
 void MyGL::update() {
-//    qDebug() << "Calling update()";
 
-    // update game logic things, like player/enemy positions
-    MainWindow::update();
-
-    // call paint now that everything is in place and just needs to be drawn
-    paintGL();
 }
 
 void MyGL::timerEvent(QTimerEvent *event)
 {
+    MainWindow::update();
+    paintGL();
     update();
+    QWidget::update();
+
 }

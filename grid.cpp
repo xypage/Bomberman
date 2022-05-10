@@ -94,6 +94,7 @@ void Grid::draw() {
             float hor = 2.0f * x / cols - 1 + sideLength;
 //            qDebug() << vert << " " << hor;
             tiles[rows - 1 - y][x]->draw(vert, hor);
+
         }
     }
 }
@@ -124,4 +125,9 @@ Tile* Grid::tileAt(int y, int x) {
         return tiles[y][x];
     else
         return nullptr;
+}
+
+void Grid::change(int y, int x) {
+    tiles[y][x] = temporaryTileConstructor(2.0f / rows);
+//    qDebug() << "Changed";
 }

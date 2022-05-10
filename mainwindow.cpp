@@ -51,23 +51,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     if (event->key() == Qt::Key_W) {
         character.attemptMoveUp();
-//        if (!isSolid(character.topEdge, x))
-//            y_inc = -5.0f;
     }
     if (event->key() == Qt::Key_S) {
         character.attemptMoveDown();
-//        if (!isSolid(character.bottomEdge, x))
-//            y_inc = 5.0f;
     }
     if (event->key() == Qt::Key_A) {
         character.attemptMoveLeft();
-//        if (!isSolid(y, character.leftEdge))
-//            x_inc = -5.0f;
     }
     if (event->key() == Qt::Key_D) {
         character.attemptMoveRight();
-//        if (!isSolid(y, character.rightEdge))
-//             x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
         bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Utility.png", ui->bombLabel);
@@ -92,6 +84,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     if (event->key() == Qt::Key_Right) {
         enemyCharacter.attemptMoveRight();
+    }
+
+    if (event->key() == Qt::Key_Y) {
+        LevelsWrapper::l->getLevel()->change(0,0);
     }
 }
 

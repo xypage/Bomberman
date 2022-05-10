@@ -28,6 +28,7 @@ public:
     int getEnemySpawnCol();
 
     Tile* tileAt(int, int);
+    void change(int, int);
 };
 
 #endif // GRID_H
