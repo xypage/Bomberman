@@ -8,6 +8,7 @@ class Grid
 protected:
     int rows, cols;
     Tile*** tiles;
+    int spawnRow, spawnCol;
 //    QVector3D backgroundColor;
 public:
     Grid();
@@ -20,6 +21,8 @@ public:
     void draw();
     int getRows();
     int getCols();
+    int getSpawnRow();
+    int getSpawnCol();
 
     Tile* tileAt(int, int);
 };

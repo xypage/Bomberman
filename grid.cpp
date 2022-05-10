@@ -20,6 +20,8 @@ Grid::~Grid() {
 
 Grid::Grid(int size)
 {
+    spawnRow = 1;
+    spawnCol = 1;
     rows = size;
     cols = size;
     float sideLength = (2.0f / size);
@@ -41,6 +43,8 @@ Grid::Grid(int size)
 }
 Grid::Grid(int size, QList<QByteArray> level)
 {
+    spawnRow = 1;
+    spawnCol = 1;
     rows = size;
     cols = size;
     float sideLength = (2.0f / size);
@@ -61,8 +65,10 @@ Grid::Grid(int size, QList<QByteArray> level)
             } else if(current == 'e' || current == 'E') {
 //                qDebug() << "in E";
                 tiles[y][x] = temporaryTileConstructor(sideLength);
-            } else {
-//                qDebug() << "in default";
+            } else if(current == 's' || current == 'S'){
+//                qDebug() << "in spawn";
+                spawnRow = y;
+                spawnCol = x;
                 tiles[y][x] = temporaryTileConstructor(sideLength);
             }
         }
@@ -88,6 +94,13 @@ int Grid::getCols() {
 }
 int Grid::getRows() {
     return rows;
+}
+
+int Grid::getSpawnCol() {
+    return spawnCol;
+}
+int Grid::getSpawnRow() {
+    return spawnRow;
 }
 
 
