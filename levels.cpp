@@ -6,6 +6,7 @@
 #include <QByteArray>
 
 int Levels::width, Levels::height;
+float Levels::sideLength;
 
 Levels::Levels() {
     qDebug() << "pre file system";
@@ -43,6 +44,7 @@ Grid* Levels::getLevel(int level) {
     if(levels.size() > level) {
         height = levels[level]->getRows();
         width = levels[level]->getCols();
+        sideLength = levels[level]->tileAt(0,0)->getSideLength();
         return levels[level];
     }
     else {
@@ -58,4 +60,8 @@ int Levels::getHeight() {
 
 int Levels::getWidth() {
     return width;
+}
+
+float Levels::getSideLength() {
+    return sideLength;
 }

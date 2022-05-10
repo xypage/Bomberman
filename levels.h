@@ -8,6 +8,7 @@ class Levels
 {
     std::vector<Grid*> levels;
     static int width, height;
+    static float sideLength;
 public:
     Levels();
     ~Levels();
@@ -17,6 +18,7 @@ public:
     static int getHeight();
     static int setWidth();
     static int setHeight();
+    static float getSideLength();
 };
 
 #endif // LEVELS_H

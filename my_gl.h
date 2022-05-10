@@ -12,6 +12,7 @@ class MyGL: public QOpenGLWidget
 public:
     explicit MyGL(QWidget *parent = 0);
     ~MyGL();
+    void update();
 
 protected:
     void initializeGL();
@@ -20,9 +21,6 @@ protected:
 
 private:
     int timerId;
-
-private slots:
-    void update();
 };
 
 #endif // MY_GL_H

@@ -17,10 +17,12 @@ public:
     Grid(int, int, QByteArray);
     ~Grid();
 
-
     void draw();
     int getRows();
     int getCols();
+
+    Tile* tileAt(int, int);
+    Tile* operator() (const int, const int);
 };
 
 #endif // GRID_H

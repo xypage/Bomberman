@@ -44,14 +44,14 @@ Grid::Grid(int size, QList<QByteArray> level)
     rows = size;
     cols = size;
     float sideLength = (2.0f / size);
-    qDebug() << "Creating from string";
+//    qDebug() << "Creating from string";
     tiles = new Tile**[size];
     for(int y = 0; y < size; y++) {
         tiles[y] = new Tile*[size];
         QByteArray row = level[y];
         for(int x = 0; x < size; x++) {
             QChar current = row[x];
-            qDebug() << y << x << current;
+//            qDebug() << y << x << current;
             if(current == 'b' || current == 'B') {
 //                qDebug() << "in B";
                 tiles[y][x] = new Breakable(sideLength);
@@ -67,7 +67,7 @@ Grid::Grid(int size, QList<QByteArray> level)
             }
         }
     }
-    qDebug() << "Done creating new grid";
+//    qDebug() << "Done creating new grid";
 }
 
 
@@ -88,4 +88,12 @@ int Grid::getCols() {
 }
 int Grid::getRows() {
     return rows;
+}
+
+
+Tile* Grid::tileAt(int y, int x) {
+    return tiles[y][x];
+}
+Tile* Grid::operator() (const int y, const int x) {
+    return tiles[y][x];
 }

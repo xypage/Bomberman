@@ -35,7 +35,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_W) {
         if (character.getY() > 10)
             y_inc = -5.0f;
-            character.getTileX();
     }
     if (event->key() == Qt::Key_S) {
         if (character.getY() + 90 < 595)
@@ -53,6 +52,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Space) {
         bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Bomb.png", ui->bombLabel);
         bomb.explode();
+        qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
     }
     character.move(x_inc, y_inc);
 }

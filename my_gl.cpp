@@ -7,14 +7,27 @@
 #include "mainwindow.h"
 #include "levels.h"
 
+
+
+Levels l;
+int currentLevel;
+Grid* g;
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
-//    timerId = startTimer(30); // ~33 fps
+    int goalFPS = 5; // low for now to avoid unnecessary work, will probably be higher later
+    // fps = 1000ms / num
+    // num = 1000ms / fps
+    int timerDelay = 1000 / goalFPS;
+    timerId = startTimer(timerDelay);
+
+    currentLevel = 0;
+    g = l.getLevel(currentLevel);
 }
 
 MyGL::~MyGL() {
     killTimer(timerId);
 }
+
 
 void MyGL::initializeGL()
 {
@@ -22,23 +35,11 @@ void MyGL::initializeGL()
 }
 
 
-int i = 0;
 void MyGL::paintGL()
 {
 //    qDebug() << "Calling paintGL()";
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
-
-
-//    Tile::setSideLength(0.25f);
-
-//    Tile t;
-
-//    t.draw(0.25f + ((float) i) / 4000, 0.25f + ((float) i) / 4000);
-    Levels l;
-    qDebug() << "Done with levels";
-    Grid* g = l.getLevel(1);
-    qDebug() << "got level 0";
     g->draw();
 
     glFlush();
@@ -46,8 +47,15 @@ void MyGL::paintGL()
 
 void MyGL::update() {
 //    qDebug() << "Calling update()";
+
+    // update game logic things, like player/enemy positions
+
+
+
+
+
+    // call paint now that everything is in place and just needs to be drawn
     paintGL();
-    i = (i + 1) % 1000;
 }
 
 void MyGL::timerEvent(QTimerEvent *event)

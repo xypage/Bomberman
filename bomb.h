@@ -16,7 +16,7 @@ public:
     Bomb();
     Bomb(float posx, float posy, float imgX, float imgy, QString filename, QLabel* label);
     void explode();
-    void draw();
+    void draw(float y, float x);
     void setStrength(int strength);
     void remove();
 };

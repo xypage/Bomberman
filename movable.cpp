@@ -2,6 +2,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "levels.h"
 #include <QKeyEvent>
 #include <QDebug>
 #include <QLabel>
@@ -31,6 +32,8 @@ float Movable::getY(){
 
 void Movable::move(float x, float y){
     label->move(QPoint(label->x() + x, label->y() + y));
+    tileX = (int) ((getX() + label->width() / 2.0f) * Levels::getWidth() / width);
+    tileY = (int) ((getY() - 16 + label->height() / 2.0f) * Levels::getHeight() / (height - 16));
 };
 
 void Movable::setLives(int lives, QLabel* label){
@@ -40,19 +43,12 @@ void Movable::setLives(int lives, QLabel* label){
     label->setText(displayLives);
 };
 
-float Movable::getTileX(){
-    float tempY = getY() - 16;
-    float tempX = getX() - (width/2);
-    tempY = tempY - (height/2);
-    tempX = (2*tempX) / width;
-    tempY = ((-2*tempY) / height);
-    qDebug() << tempX;
-    qDebug() << tempY;
-    return tempX;
+int Movable::getTileX(){
+    return tileX;
 }
 
-float Movable::getTileY(){
-
+int Movable::getTileY(){
+    return tileY;
 }
 
 void Movable::hitbox(){

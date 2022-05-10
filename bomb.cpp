@@ -36,7 +36,7 @@ void Bomb::remove(){
 
 }
 
-void Bomb::draw(){
+void Bomb::draw(float y, float x){
 
 }
 

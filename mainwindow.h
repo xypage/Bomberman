@@ -20,7 +20,7 @@ public:
     ~MainWindow();
 
     void keyPressEvent(QKeyEvent *);
-
+    void updateTileSize(float size);
 
 private:
     Ui::MainWindow *ui;
