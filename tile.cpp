@@ -156,3 +156,67 @@ void Invincible::draw(float y, float x) {
     drawBrick(x, y, sideLength, 0.3137254902, 0.3137254902, 0.3137254902, 0.7686274510, 0.7843137255, 0.8078431373);
 }
 
+Floor::Floor(float _sideLength, Junction _left, Junction _right, Junction _up, Junction _down):
+    Tile(false, false, _sideLength),left(_left), right(_right), up(_up), down(_down) {};
+
+void Floor::draw(float y, float x) {
+    glBegin(GL_POLYGON);
+    glColor3f(0.8431372549, 0.8, 0.5568627451);
+        glVertex2f(x             , y             ); // top right
+        glVertex2f(x - sideLength, y             ); // top left
+        glVertex2f(x - sideLength, y - sideLength); // bottom left
+        glVertex2f(x             , y - sideLength); // bottom right
+    glEnd();
+
+    float third = sideLength / 3;
+
+    glBegin(GL_LINES);
+    glColor3f(0.6156862745, 0.5411764706, 0.3764705882);
+    if(left == open) {
+        glVertex2f(x - sideLength, y - third);
+        glVertex2f(x - third - third, y - third);
+
+        glVertex2f(x - sideLength, y - third - third);
+        glVertex2f(x - third - third, y - third - third);
+    } else {
+        glVertex2f(x - third - third, y - third);
+        glVertex2f(x - third - third, y - third - third);
+    }
+
+    if(up == open) {
+        glVertex2f(x - third - third, y);
+        glVertex2f(x - third - third, y - third);
+
+
+        glVertex2f(x - third, y);
+        glVertex2f(x - third, y - third);
+    } else {
+        glVertex2f(x - third - third, y - third);
+        glVertex2f(x - third, y - third);
+    }
+
+    if(right == open) {
+        glVertex2f(x, y - third);
+        glVertex2f(x - third, y - third);
+
+        glVertex2f(x, y - third - third);
+        glVertex2f(x - third, y - third - third);
+    } else {
+        glVertex2f(x - third, y - third);
+        glVertex2f(x - third, y - third - third);
+    }
+
+    if(down == open) {
+        glVertex2f(x - third - third, y - third - third);
+        glVertex2f(x - third - third, y - sideLength);
+
+
+        glVertex2f(x - third, y - third - third);
+        glVertex2f(x - third, y - sideLength);
+    } else {
+        glVertex2f(x - third - third, y - third - third);
+        glVertex2f(x - third, y - third - third);
+    }
+    glEnd();
+}
+
