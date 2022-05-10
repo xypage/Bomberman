@@ -26,17 +26,10 @@
    <widget class="QLabel" name="playerLabel">
     <property name="geometry">
      <rect>
-<<<<<<< HEAD
-      <x>0</x>
-      <y>0</y>
-      <width>45</width>
-      <height>48</height>
-=======
       <x>380</x>
       <y>300</y>
       <width>50</width>
       <height>50</height>
->>>>>>> b28e43ef96247d0096fd4f1d03060d2a874bd820
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">

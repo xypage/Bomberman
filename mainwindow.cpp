@@ -24,20 +24,13 @@ void moveToStart() {
 
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     this->setFixedSize(QSize(600, 616));
     Grid* g = MyGL::getLevelsWrapper()->l->getLevel();
-<<<<<<< HEAD
     character = Movable(0, 0, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
     moveToStart();
-=======
-    float startX = g->getSpawnCol() * 600.0f / g->getCols();
-    float startY = g->getSpawnRow() * 600.0f / g->getRows() + 16;
-    character = Movable(0, 20, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
->>>>>>> b28e43ef96247d0096fd4f1d03060d2a874bd820
     character.setLives(3, ui->lives);
     enemyCharacter = Movable(550, 560, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
 }
@@ -63,7 +56,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     int y = character.getTileY();
 
     if (event->key() == Qt::Key_W) {
-<<<<<<< HEAD
         if (!isSolid(character.topEdge, x))
             y_inc = -5.0f;
     }
@@ -73,26 +65,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     if (event->key() == Qt::Key_A) {
         if (!isSolid(y, character.leftEdge))
-=======
-        if (character.getY() > 20 && isSolid(y - 1, x))
-            y_inc = -5.0f;
-    }
-    if (event->key() == Qt::Key_S) {
-        if (character.getY() + 90 < 650 && isSolid(y + 1, x))
-            y_inc = 5.0f;
-    }
-    if (event->key() == Qt::Key_A) {
-        if (character.getX() > 0 && isSolid(y, x - 1))
->>>>>>> b28e43ef96247d0096fd4f1d03060d2a874bd820
             x_inc = -5.0f;
-                //setPos(x()-5,y());
     }
     if (event->key() == Qt::Key_D) {
-<<<<<<< HEAD
         if (!isSolid(y, character.rightEdge))
-=======
-        if (character.getX() + 100 < 650 && isSolid(y, x + 1))
->>>>>>> b28e43ef96247d0096fd4f1d03060d2a874bd820
              x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
