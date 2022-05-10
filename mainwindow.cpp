@@ -8,9 +8,10 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include "movable.h"
+#include "bomb.h"
 
 Movable character;
-Movable bomb;
+Bomb bomb;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -18,9 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(QSize(600, 616));
 
-    character = Movable(300, 300, ":/img/BombermanUltimate2.png", ui->playerLabel);
+    character = Movable(0, 0, ":/img/BombermanUltimate2.png", ui->playerLabel, this->height(), this->width());
     character.setLives(3, ui->lives);
-//    bomb = Movable(character.getX(), character.getY(), ":/img/Bomb.png", ui->BombLabel);
 }
 
 MainWindow::~MainWindow()
@@ -35,6 +35,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_W) {
         if (character.getY() > 10)
             y_inc = -5.0f;
+            character.getTileX();
     }
     if (event->key() == Qt::Key_S) {
         if (character.getY() + 90 < 595)
@@ -48,6 +49,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_D) {
         if (character.getX() + 100 < 615)
              x_inc = 5.0f;
+    }
+    if (event->key() == Qt::Key_Space) {
+        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Bomb.png", ui->bombLabel);
+        bomb.explode();
     }
     character.move(x_inc, y_inc);
 }
