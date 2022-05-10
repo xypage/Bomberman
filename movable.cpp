@@ -55,13 +55,13 @@ void Movable::move(float x, float y){
     bottomEdge = (int) ((centerY + 25) * Levels::getHeight() / height);
 };
 
-void Movable::setLives(int lives, QLabel* label){
+void Movable::setLives(int lives, QLabel* livesLabel){
     displayLives = "Lives: ";
     displayLives += QString::number(lives);
     qDebug() << displayLives;
-    label->setText(displayLives);
-    if(lives < 2){
-//        move(100, 100);
+    livesLabel->setText(displayLives);
+    if(lives < 3){
+        label->move(QPoint(100, 100));
     }
 };
 
@@ -95,8 +95,20 @@ void Movable::hitbox(Movable enemy, QLabel* livesLabel){
 //           setLives(this->lives-1, livesLabel);
 //        }
 //    }
-    if(tileX == enemy.getTileX() && tileY == enemy.getTileX()) {
-        setLives(this->lives - 1, livesLabel);
+    // if(tileX == enemy.getTileX() && tileY == enemy.getTileX()) {
+    //     setLives(this->lives - 1, livesLabel);
+    // }
+    if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
+        if(label->y() - label->height() <= enemy.label->y() && label->y() - label->height() >= enemy.label->y() - enemy.label->height()){
+            lives--;
+            setLives(lives, livesLabel);
+        }
+    }
+    else if(label->x() >= enemy.label->x() && label->x() <= enemy.label->x() + enemy.label->width()){
+        if(label->y() <= enemy.label->y() && label->y() >= enemy.label->y() - enemy.label->height()){
+            lives--;
+            setLives(lives, livesLabel);
+        }
     }
 }
 
@@ -199,7 +211,6 @@ void Movable::hunt(Movable prey) {
                 moved = attemptMoveDown();
                 desire = down;
             }
-        }
     } else {
         if(tileY < prey.getTileY()) {
             if(prey.getTileX() - tileX > prey.getTileY() - tileY) {
