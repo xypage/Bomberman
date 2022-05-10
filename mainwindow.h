@@ -22,6 +22,7 @@ public:
     void keyPressEvent(QKeyEvent *);
     void updateTileSize(float size);
     void moveEnemy();
+    static void update();
 
 private:
     Ui::MainWindow *ui;

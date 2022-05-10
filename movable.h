@@ -5,6 +5,8 @@
 #include <QString>
 #include <QLabel>
 
+enum dir {up, down, left, right, none};
+
 class Movable{
 private:
     // x and y position of the image
@@ -13,6 +15,7 @@ private:
     int tileX, tileY;
     QLabel* label;
     QString displayLives;
+    dir desire;
 
 public:
     int leftEdge, rightEdge, topEdge, bottomEdge;
@@ -26,6 +29,13 @@ public:
     int getTileX();
     int getTileY();
     QLabel* getLabel();
+    bool attemptMoveLeft();
+    bool attemptMoveRight();
+    bool attemptMoveUp();
+    bool attemptMoveDown();
+    bool attemptMove(dir);
+    void hunt(Movable prey);
+    void huntDirect(Movable prey);
 };
 
 #endif // MOVABLE_H

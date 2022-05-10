@@ -1,6 +1,5 @@
 #include<QDebug>
 #include "my_gl.h"
-
 #include "tile.h"
 #include "grid.h"
 #include "draw.h"
@@ -18,7 +17,7 @@ int currentLevel;
 Grid* g;
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
-    float goalFPS = 0.5; // low for now to avoid unnecessary work, will probably be higher later
+    float goalFPS = 10; // low for now to avoid unnecessary work, will probably be higher later
     // fps = 1000ms / num
     // num = 1000ms / fps
     int timerDelay = (int) (1000 / goalFPS);
@@ -53,7 +52,7 @@ void MyGL::update() {
 //    qDebug() << "Calling update()";
 
     // update game logic things, like player/enemy positions
-
+    MainWindow::update();
 
     // call paint now that everything is in place and just needs to be drawn
     paintGL();

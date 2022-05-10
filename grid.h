@@ -9,6 +9,7 @@ protected:
     int rows, cols;
     Tile*** tiles;
     int spawnRow, spawnCol;
+    int enemySpawnRow, enemySpawnCol;
 //    QVector3D backgroundColor;
 public:
     Grid();
@@ -23,6 +24,8 @@ public:
     int getCols();
     int getSpawnRow();
     int getSpawnCol();
+    int getEnemySpawnRow();
+    int getEnemySpawnCol();
 
     Tile* tileAt(int, int);
 };

@@ -22,6 +22,8 @@ Grid::Grid(int size)
 {
     spawnRow = 1;
     spawnCol = 1;
+    enemySpawnRow = 1;
+    enemySpawnCol = 1;
     rows = size;
     cols = size;
     float sideLength = (2.0f / size);
@@ -45,6 +47,8 @@ Grid::Grid(int size, QList<QByteArray> level)
 {
     spawnRow = 1;
     spawnCol = 1;
+    enemySpawnRow = 1;
+    enemySpawnCol = 1;
     rows = size;
     cols = size;
     float sideLength = (2.0f / size);
@@ -69,6 +73,11 @@ Grid::Grid(int size, QList<QByteArray> level)
 //                qDebug() << "in spawn";
                 spawnRow = y;
                 spawnCol = x;
+                tiles[y][x] = temporaryTileConstructor(sideLength);
+            } else if(current == 'x' || current == 'X') {
+//                qDebug() << "in enemy spawn";
+                enemySpawnRow = y;
+                enemySpawnCol = x;
                 tiles[y][x] = temporaryTileConstructor(sideLength);
             }
         }
@@ -101,6 +110,12 @@ int Grid::getSpawnCol() {
 }
 int Grid::getSpawnRow() {
     return spawnRow;
+}
+int Grid::getEnemySpawnCol() {
+    return enemySpawnCol;
+}
+int Grid::getEnemySpawnRow() {
+    return enemySpawnRow;
 }
 
 

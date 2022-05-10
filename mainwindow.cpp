@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include "draw.h"
 #include "vec.h"
-
 #include <QKeyEvent>
 #include <QDebug>
 #include "movable.h"
@@ -28,11 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setFixedSize(QSize(600, 616));
-    Grid* g = MyGL::getLevelsWrapper()->l->getLevel();
     character = Movable(0, 0, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
     moveToStart();
     character.setLives(3, ui->lives);
-    enemyCharacter = Movable(550, 560, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
+
+    enemyCharacter = Movable(480, 500, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
 }
 
 MainWindow::~MainWindow()
@@ -50,59 +48,51 @@ bool isSolid(int y, int x) {
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    float y_inc = 0.0, x_inc = 0.0;
-
-    int x = character.getTileX();
-    int y = character.getTileY();
 
     if (event->key() == Qt::Key_W) {
-        if (!isSolid(character.topEdge, x))
-            y_inc = -5.0f;
+        character.attemptMoveUp();
+//        if (!isSolid(character.topEdge, x))
+//            y_inc = -5.0f;
     }
     if (event->key() == Qt::Key_S) {
-        if (!isSolid(character.bottomEdge, x))
-            y_inc = 5.0f;
+        character.attemptMoveDown();
+//        if (!isSolid(character.bottomEdge, x))
+//            y_inc = 5.0f;
     }
     if (event->key() == Qt::Key_A) {
-        if (!isSolid(y, character.leftEdge))
-            x_inc = -5.0f;
+        character.attemptMoveLeft();
+//        if (!isSolid(y, character.leftEdge))
+//            x_inc = -5.0f;
     }
     if (event->key() == Qt::Key_D) {
-        if (!isSolid(y, character.rightEdge))
-             x_inc = 5.0f;
+        character.attemptMoveRight();
+//        if (!isSolid(y, character.rightEdge))
+//             x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
         bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Utility.png", ui->bombLabel);
         bomb.explode();
-        qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
-        qDebug() << character.leftEdge << character.topEdge;
-        qDebug() << character.rightEdge << character.bottomEdge << '\n';
-        Tile* t = MyGL::getLevelsWrapper()->l->getLevel()->tileAt(character.getTileY(), character.getTileX());
-        qDebug() << t->isSolid() << t->isBreakable();
     }
     if(event->key() == Qt::Key_R) {
         moveToStart();
     }
-    character.move(x_inc, y_inc);
+
     character.hitbox(enemyCharacter, ui->lives);
 
-    float yMove = 0.0, xMove = 0.0;
-        if (event->key() == Qt::Key_Up) {
-            if (enemyCharacter.getY() > 0 && isSolid(y - 1, x))
-                yMove = -5.0f;
-        }
-        if (event->key() == Qt::Key_Down) {
-            if (enemyCharacter.getY() + 90 < 650 && isSolid(y + 1, x))
-                yMove = 5.0f;
-        }
-        if (event->key() == Qt::Key_Left) {
-            if (enemyCharacter.getX() > 0 && isSolid(y, x - 1))
-                 xMove = -5.0f;
-        }
-        if (event->key() == Qt::Key_Right) {
-            if (enemyCharacter.getX() + 100 < 650 && isSolid(y, x + 1))
-                 xMove = 5.0f;
-        }
+    if (event->key() == Qt::Key_Up) {
+        enemyCharacter.attemptMoveUp();
+    }
+    if (event->key() == Qt::Key_Down) {
+        enemyCharacter.attemptMoveDown();
+    }
+    if (event->key() == Qt::Key_Left) {
+        enemyCharacter.attemptMoveLeft();
+    }
+    if (event->key() == Qt::Key_Right) {
+        enemyCharacter.attemptMoveRight();
+    }
+}
 
-        enemyCharacter.move(xMove, yMove);
+void MainWindow::update() {
+    enemyCharacter.huntDirect(character);
 }
