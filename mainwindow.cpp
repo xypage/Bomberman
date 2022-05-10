@@ -70,4 +70,27 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
     }
     character.move(x_inc, y_inc);
+
+    float yMove = 0.0, xMove = 0.0;
+    if (event->key() == Qt::Key_Left) {
+            if (enemyCharacter.getX() > 20 && isSolid(y - 1, x)) {
+                 xMove = -5.0f;
+            }
+        }
+        if (event->key() == Qt::Key_Right) {
+            if (enemyCharacter.getX() < 600 && isSolid(y + 1, x))
+                    y_inc = 5.0f; {
+                 xMove = 5.0f;
+            }
+        }
+        if (event->key() == Qt::Key_Up) {
+            if (enemyCharacter.getY() > 0 && isSolid(y, x - 1))
+                yMove = -5.0f;
+        }
+        if (event->key() == Qt::Key_Down) {
+            if (enemyCharacter.getY() + 100 < 600 && isSolid(y, x + 1))
+                yMove = 5.0f;
+        }
+
+        enemyCharacter.move(xMove, yMove);
 }
