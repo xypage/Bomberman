@@ -4,7 +4,7 @@
 #include "tile.h"
 #include "bomb.h"
 #include "grid.h"
-#include <QGraphicsOpacityEffect>
+#include "movable.h"
 
 Bomb::Bomb(){
     this -> strength = 0;
@@ -28,12 +28,19 @@ void Bomb::setStrength(int strength){
 }
 
 void Bomb::explode(){
-    label->setAttribute(Qt::WA_TranslucentBackground);
-    label->repaint();
+//    if(!(tileX == LevelsWrapper::l->getLevel()->getSpawnCol() && tileY == LevelsWrapper::l->getLevel()->getSpawnRow()) &&
+//            tileX == enemy.getTileX() && tileY == enemy.getTileY()) {
+//        setLives(lives - 1, livesLabel);
+//    }
 }
 
 void Bomb::remove(){
-
+        for(int i = 0; i < strength; i++){
+//        name.remove(posX + i, posY);
+//        name.remove(posX, posY + i);
+//        name.remove(posX - i, posY);
+//        name.remove(posX, posY - i);
+    }
 }
 
 void Bomb::draw(float y, float x){
