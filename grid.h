@@ -17,6 +17,7 @@ public:
     Grid(int, int); // rectangle
     Grid(int, QList<QByteArray>);
     Grid(int, int, QByteArray);
+    void makeFloors();
     ~Grid();
 
     void draw();

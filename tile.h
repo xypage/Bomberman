@@ -46,4 +46,13 @@ public:
     virtual void draw(float y, float x);
 };
 
+enum Junction { open, closed };
+class Floor: public Tile {
+    Junction left, right, up, down;
+public:
+    Floor(float sideLength, Junction, Junction, Junction, Junction);
+
+    virtual void draw(float y, float x);
+};
+
 #endif // TILE_H

@@ -82,6 +82,7 @@ Grid::Grid(int size, QList<QByteArray> level)
             }
         }
     }
+    makeFloors();
 //    qDebug() << "Done creating new grid";
 }
 
@@ -139,4 +140,36 @@ Tile* Grid::tileAt(int y, int x) {
 void Grid::change(int y, int x) {
     tiles[y][x] = temporaryTileConstructor(2.0f / rows);
 //    qDebug() << "Changed";
+}
+
+void Grid::makeFloors() {
+    float sideLength = 2.0f / rows;
+    for(int y = 1; y < rows - 1; y++) {
+        for(int x = 1; x < cols - 1; x++) {
+            if(!tiles[y][x]->isSolid()) {
+                Junction up, down, left, right;
+                if(tiles[y - 1][x]->isSolid())
+                    up = closed;
+                else
+                    up = open;
+
+                if(tiles[y + 1][x]->isSolid())
+                    down = closed;
+                else
+                    down = open;
+
+                if(tiles[y][x + 1]->isSolid())
+                    right = closed;
+                else
+                    right = open;
+
+                if(tiles[y][x - 1]->isSolid())
+                    left = closed;
+                else
+                    left = open;
+
+                tiles[y][x] = new Floor(sideLength, left, right, up, down);
+            }
+        }
+    }
 }
