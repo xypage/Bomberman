@@ -77,7 +77,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                 yMove = -5.0f;
         }
         if (event->key() == Qt::Key_Down) {
-            if (enemyCharacter.getY() + 90 < 600 && isSolid(y + 1, x))
+            if (enemyCharacter.getY() + 90 < 650 && isSolid(y + 1, x))
                 yMove = 5.0f;
         }
         if (event->key() == Qt::Key_Left) {
