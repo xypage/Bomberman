@@ -40,10 +40,6 @@ float Movable::getY(){
 void Movable::move(float x, float y){
     label->move(QPoint(label->x() + x, label->y() + y));
 
-//    leftEdge = (int) (( 20 + getX()) * Levels::getWidth() / width);
-//    rightEdge = (int) ((getX() + label->width()/2) * Levels::getWidth() / width);
-//    bottomEdge = (int) ((getY()) * Levels::getHeight() / (height - 16));
-//    topEdge = (int) ((getY() - label->height() + 20) * Levels::getHeight() / (height - 16));
     float centerX = getX() + (label->width() / 2.0f);
     float centerY = getY() + label->height() / 2.0f - 16;
     tileX = (int) (centerX * Levels::getWidth() / width);
@@ -62,7 +58,7 @@ void Movable::setLives(int lives, QLabel* livesLabel){
     qDebug() << displayLives;
     livesLabel->setText(displayLives); // Updates lives counter
     if(this -> lives < 3){ // Respawn
-        label->move(QPoint(100, 100));
+        move(100 - label->x(), 100 - label->y()); // do it this way so move can set new tileX/Y values
     }
 };
 
@@ -78,39 +74,11 @@ QLabel* Movable::getLabel() {
     return this->label;
 }
 
-void Movable::hitbox(Movable enemy, QLabel* livesLabel){
-//    bool rightSideOverlap = rightEdge >= enemy.leftEdge && leftEdge <= enemy.leftEdge;
-//    bool leftSideOverlap = leftEdge <= enemy.rightEdge && rightEdge >= enemy.rightEdge;
-//    bool topOverlap = topEdge <= enemy.bottomEdge && bottomEdge >= enemy.bottomEdge;
-//    bool bottomOverlap = bottomEdge >= enemy.topEdge && topEdge <= enemy.topEdge;
-//    if((rightSideOverlap || leftSideOverlap) && (topOverlap || bottomOverlap)) {
-//        setLives(this->lives-1, livesLabel);
-//    }
-//    if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
-//        if(label->y() - label->height() <= enemy.label->y() && label->y() - label->height() >= enemy.label->y() - enemy.label->height()){
-//            setLives(this->lives-1, livesLabel);
-//        }
-//    }
-//    else if(label->x() >= enemy.label->x() && label->x() <= enemy.label->x() + enemy.label->width()){
-//        if(label->y() <= enemy.label->y() && label->y() >= enemy.label->y() - enemy.label->height()){
-//           setLives(this->lives-1, livesLabel);
-//        }
-//    }
-    // if(tileX == enemy.getTileX() && tileY == enemy.getTileX()) {
-    //     setLives(this->lives - 1, livesLabel);
-    // }
-    if(label ->x() == 100 && label -> y() == 100){
-        //This is a safe space / spawn location where lives can't be lost
-    }
-    else if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
-        if(label->y() - label->height() <= enemy.label->y() && label->y() - label->height() >= enemy.label->y() - enemy.label->height()){
-            setLives(lives - 1, livesLabel);
-        }
-    }
-    else if(label->x() >= enemy.label->x() && label->x() <= enemy.label->x() + enemy.label->width()){
-        if(label->y() <= enemy.label->y() && label->y() >= enemy.label->y() - enemy.label->height()){
-            setLives(lives - 1, livesLabel);
-        }
+void Movable::hitbox(Movable enemy){
+    QLabel* livesLabel = this->label->parent()->findChild<QLabel*>(QString("lives"));
+    if(!(tileX == LevelsWrapper::l->getLevel()->getSpawnCol() && tileY == LevelsWrapper::l->getLevel()->getSpawnRow()) &&
+            tileX == enemy.getTileX() && tileY == enemy.getTileY()) {
+        setLives(lives - 1, livesLabel);
     }
 }
 

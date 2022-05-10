@@ -81,8 +81,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         close();
     }
 
-    character.hitbox(enemyCharacter, ui->lives);
-
     if (event->key() == Qt::Key_Up) {
         enemyCharacter.attemptMoveUp();
     }
@@ -99,4 +97,5 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::update() {
     enemyCharacter.huntDirect(character);
+    character.hitbox(enemyCharacter);
 }
