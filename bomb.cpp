@@ -34,6 +34,28 @@ void Bomb::explode(){
 //    }
 }
 
+bool Bomb::dropped(){
+   return wasDropped;
+}
+
+
+void Bomb::check(Movable enemy){
+   QLabel* enemylabel = enemy.getLabel();
+   if(enemy.getX() >= label->x() && enemy.getX() <= label ->x() + label->width()) {
+       if(enemy.getY() >= label->y() - label->height()/2 && enemy.getY() <= label->y() ||
+               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()/2) {
+           enemylabel->move(QPoint(500, 500));
+       }
+   }
+   if(enemy.getX() + enemylabel->width() >= label->x() && enemy.getX() + enemylabel->width() <= label -> x() + label->width()){
+       if(enemy.getY() >= label->y() - label->height()/2 && enemy.getY() <= label->y() ||
+               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()/2) {
+           enemylabel->move(QPoint(500, 500));
+       }
+   }
+}
+
+
 void Bomb::remove(){
         for(int i = 0; i < strength; i++){
 //        name.remove(posX + i, posY);

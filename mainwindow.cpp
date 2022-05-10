@@ -94,4 +94,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::update() {
     enemyCharacter.huntDirect(character);
     character.hitbox(enemyCharacter);
+    if(bomb.dropped()){
+          bomb.check(enemyCharacter);
+     }
 }

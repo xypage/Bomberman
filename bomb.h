@@ -5,12 +5,14 @@
 #include <QString>
 #include <QLabel>
 #include "tile.h"
+#include "movable.h"
 
 class Bomb : public Tile{
 static int count;
 int strength;
 float posX, posY;
 QLabel* label;
+bool wasDropped;
 
 public:
     Bomb();
@@ -19,6 +21,8 @@ public:
     void draw(float y, float x);
     void setStrength(int strength);
     void remove();
+    void check(Movable enemy);
+    bool dropped();
 };
 
 #endif // BOMB_H
