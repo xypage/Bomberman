@@ -42,14 +42,14 @@ bool Bomb::dropped(){
 void Bomb::check(Movable enemy){
    QLabel* enemylabel = enemy.getLabel();
    if(enemy.getX() >= label->x() && enemy.getX() <= label ->x() + label->width()) {
-       if(enemy.getY() >= label->y() - label->height()/2 && enemy.getY() <= label->y() ||
-               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()/2) {
+       if(enemy.getY() >= label->y() - label->height() && enemy.getY() <= label->y() ||
+               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()) {
            enemylabel->move(QPoint(500, 500));
        }
    }
    if(enemy.getX() + enemylabel->width() >= label->x() && enemy.getX() + enemylabel->width() <= label -> x() + label->width()){
-       if(enemy.getY() >= label->y() - label->height()/2 && enemy.getY() <= label->y() ||
-               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()/2) {
+       if(enemy.getY() >= label->y() - label->height() && enemy.getY() <= label->y() ||
+               enemy.getY() - enemylabel->height() < label->y() && enemy.getY() - enemylabel->height() >= label->y() - label->height()) {
            enemylabel->move(QPoint(500, 500));
        }
    }
