@@ -211,6 +211,7 @@ void Movable::hunt(Movable prey) {
                 moved = attemptMoveDown();
                 desire = down;
             }
+        }
     } else {
         if(tileY < prey.getTileY()) {
             if(prey.getTileX() - tileX > prey.getTileY() - tileY) {
