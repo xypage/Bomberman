@@ -8,20 +8,24 @@
 #include "levels.h"
 
 
+LevelsWrapper* MyGL::getLevelsWrapper() {
+    static LevelsWrapper* l = new LevelsWrapper();
 
-Levels l;
+    return l;
+}
+
 int currentLevel;
 Grid* g;
 MyGL::MyGL(QWidget *parent) : QOpenGLWidget(parent)
 {
-    int goalFPS = 5; // low for now to avoid unnecessary work, will probably be higher later
+    float goalFPS = 0.5; // low for now to avoid unnecessary work, will probably be higher later
     // fps = 1000ms / num
     // num = 1000ms / fps
-    int timerDelay = 1000 / goalFPS;
+    int timerDelay = (int) (1000 / goalFPS);
     timerId = startTimer(timerDelay);
 
     currentLevel = 0;
-    g = l.getLevel(currentLevel);
+    g = getLevelsWrapper()->l->getLevel(currentLevel);
 }
 
 MyGL::~MyGL() {
@@ -49,9 +53,6 @@ void MyGL::update() {
 //    qDebug() << "Calling update()";
 
     // update game logic things, like player/enemy positions
-
-
-
 
 
     // call paint now that everything is in place and just needs to be drawn

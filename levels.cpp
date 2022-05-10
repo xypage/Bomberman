@@ -8,22 +8,19 @@
 int Levels::width, Levels::height;
 float Levels::sideLength;
 
+Levels* LevelsWrapper::l = new Levels;
+
 Levels::Levels() {
-    qDebug() << "pre file system";
     QResource in(":/Levels/levels.txt");
-//    qDebug() << file.size();
-//    QTextStream in(&file);
     QList<QByteArray> levelStrings = in.uncompressedData().trimmed().split('\n');
     int pos = 0;
     QList<QByteArray> level;
     while(pos < levelStrings.length()) {
-        qDebug() << "In";
         if(levelStrings[pos].trimmed().isEmpty()) {
             pos++;
             continue;
         }
         int size = levelStrings[pos].toInt();
-        qDebug() << levelStrings[pos] << size;
         for(int i = 1; i <= size; i++) {
             level.append(levelStrings[i + pos]);
         }
@@ -64,4 +61,8 @@ int Levels::getWidth() {
 
 float Levels::getSideLength() {
     return sideLength;
+}
+
+int Levels::getLevelCount() {
+    return levels.size();
 }

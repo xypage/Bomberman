@@ -6,6 +6,8 @@
 #include <QtOpenGLWidgets>
 #include <GL/glu.h>
 
+#include "levels.h"
+
 class MyGL: public QOpenGLWidget
 {
     Q_OBJECT
@@ -13,6 +15,7 @@ public:
     explicit MyGL(QWidget *parent = 0);
     ~MyGL();
     void update();
+    static LevelsWrapper* getLevelsWrapper();
 
 protected:
     void initializeGL();

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "my_gl.h"
 
 #include "draw.h"
 #include "vec.h"
@@ -9,6 +8,8 @@
 #include <QDebug>
 #include "movable.h"
 #include "bomb.h"
+#include "levels.h"
+#include "my_gl.h"
 
 Movable character;
 Movable enemyCharacter;
@@ -28,6 +29,23 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+QString checkCollision(Tile* t) {
+    if(t == nullptr)
+        return "Null";
+    QString qs = "";
+    if(t->isSolid())
+        qs += "Solid ";
+    else
+        qs += "Empty ";
+
+    if(t->isBreakable())
+        qs += "Breakable";
+    else
+        qs += "Invincible";
+
+    return qs;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -55,6 +73,21 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Utility.png", ui->bombLabel);
         bomb.explode();
         qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
+    }
+
+    int x = character.getTileX();
+    int y = character.getTileY();
+    if (event->key() == Qt::Key_Up) {
+        qDebug() << "x: " << x << "y:" << y - 1 << "state: " << checkCollision(MyGL::getLevelsWrapper()->l->getLevel()->tileAt(y - 1, x));
+    }
+    if (event->key() == Qt::Key_Down) {
+        qDebug() << "x: " << x << "y:" << y + 1 << "state: " << checkCollision(MyGL::getLevelsWrapper()->l->getLevel()->tileAt(y + 1, x));
+    }
+    if (event->key() == Qt::Key_Left) {
+        qDebug() << "x: " << x - 1 << "y:" << y << "state: " << checkCollision(MyGL::getLevelsWrapper()->l->getLevel()->tileAt(y, x - 1));
+    }
+    if (event->key() == Qt::Key_Right) {
+        qDebug() << "x: " << x + 1 << "y:" << y << "state: " << checkCollision(MyGL::getLevelsWrapper()->l->getLevel()->tileAt(y, x + 1));
     }
     character.move(x_inc, y_inc);
 }

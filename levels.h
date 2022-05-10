@@ -19,6 +19,11 @@ public:
     static int setWidth();
     static int setHeight();
     static float getSideLength();
+    int getLevelCount();
+};
+
+struct LevelsWrapper {
+    static Levels* l;
 };
 
 #endif // LEVELS_H

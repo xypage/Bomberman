@@ -78,7 +78,7 @@ void Grid::draw() {
             float vert = 2.0f * y / rows - 1 + sideLength;
             float hor = 2.0f * x / cols - 1 + sideLength;
 //            qDebug() << vert << " " << hor;
-            tiles[y][x]->draw(vert, hor);
+            tiles[rows - 1 - y][cols - 1 - x]->draw(vert, hor);
         }
     }
 }
@@ -92,8 +92,8 @@ int Grid::getRows() {
 
 
 Tile* Grid::tileAt(int y, int x) {
-    return tiles[y][x];
-}
-Tile* Grid::operator() (const int y, const int x) {
-    return tiles[y][x];
+    if(y >= 0 && y < rows && x >= 0 && x < cols)
+        return tiles[y][x];
+    else
+        return nullptr;
 }
