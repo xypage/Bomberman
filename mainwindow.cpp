@@ -23,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     Grid* g = MyGL::getLevelsWrapper()->l->getLevel();
     float startX = g->getSpawnCol() * 600.0f / g->getCols();
     float startY = g->getSpawnRow() * 600.0f / g->getRows() + 16;
-    character = Movable(startX, startY, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
+    character = Movable(0, 20, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
     character.setLives(3, ui->lives);
-    enemyCharacter = Movable(515, 530, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
+    enemyCharacter = Movable(550, 560, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
 }
 
 MainWindow::~MainWindow()
@@ -48,20 +48,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     int y = character.getTileY();
 
     if (event->key() == Qt::Key_W) {
-        if (character.getY() > 18 && !isSolid(y - 1, x))
+        if (character.getY() > 20 && isSolid(y - 1, x))
             y_inc = -5.0f;
     }
     if (event->key() == Qt::Key_S) {
-        if (character.getY() + 90 < 620 && !isSolid(y + 1, x))
+        if (character.getY() + 90 < 650 && isSolid(y + 1, x))
             y_inc = 5.0f;
     }
     if (event->key() == Qt::Key_A) {
-        if (character.getX() > 0 && !isSolid(y, x - 1))
+        if (character.getX() > 0 && isSolid(y, x - 1))
             x_inc = -5.0f;
                 //setPos(x()-5,y());
     }
     if (event->key() == Qt::Key_D) {
-        if (character.getX() + 100 < 615 && !isSolid(y, x + 1))
+        if (character.getX() + 100 < 650 && isSolid(y, x + 1))
              x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
