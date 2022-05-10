@@ -70,7 +70,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 //             x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
-        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Utility.png", ui->bombLabel);
+        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Goop.png", ui->bombLabel);
         bomb.explode();
     }
     if(event->key() == Qt::Key_R) {

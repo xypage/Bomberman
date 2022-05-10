@@ -82,6 +82,14 @@ void Movable::hitbox(Movable enemy){
     }
 }
 
+//void Movable::dropBomb(Bomb goop){
+//    const goopX = tileX;
+//    const goopY = tileY;
+//    if(goopX == enemy.getTileX() && goopY == enemy.getTileY()){
+
+//    }
+//}
+
 bool Movable::attemptMoveLeft() {
     Tile* tile = checkTile(tileY, leftEdge);
     if(tile != nullptr && !tile->isSolid()) {
