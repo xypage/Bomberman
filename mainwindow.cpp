@@ -4,12 +4,11 @@
 
 #include "draw.h"
 #include "vec.h"
-
-#include <QKeyEvent>
 #include <QDebug>
 #include "movable.h"
 
 Movable character;
+Movable enemyCharacter;
 Movable bomb;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     character = Movable(300, 300, ":/img/BombermanUltimate2.png", ui->playerLabel);
     character.setLives(3, ui->lives);
+    enemyCharacter = Movable(400, 400, ":/img/blackBomberman.png", ui->enemyLabel);
 //    bomb = Movable(character.getX(), character.getY(), ":/img/Bomb.png", ui->BombLabel);
 }
 
@@ -51,3 +51,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
     character.move(x_inc, y_inc);
 }
+
+void MainWindow::moveEnemy() {
+    float yAxis = 0.0, xAxis = 0.0;
+    while (enemyCharacter.getX() > -20) {
+        if (enemyCharacter.getX() < 450)
+            yAxis = 5.0f;
+    }
+    enemyCharacter.move(xAxis, yAxis);
+}
+

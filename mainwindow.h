@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtOpenGL>
 #include <QKeyEvent>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,6 +21,7 @@ public:
     ~MainWindow();
 
     void keyPressEvent(QKeyEvent *);
+    void moveEnemy();
 
 
 private:
