@@ -11,6 +11,7 @@
 #include "bomb.h"
 
 Movable character;
+Movable enemyCharacter;
 Bomb bomb;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,8 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(QSize(600, 616));
 
-    character = Movable(0, 0, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
+    character = Movable(0, 20, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
     character.setLives(3, ui->lives);
+    enemyCharacter = Movable(515, 530, ":/img/Enemy.png", ui->enemyLabel, this->height(), this->width());
 }
 
 MainWindow::~MainWindow()
@@ -33,15 +35,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     float y_inc = 0.0, x_inc = 0.0;
 
     if (event->key() == Qt::Key_W) {
-        if (character.getY() > 10)
+        if (character.getY() > 18)
             y_inc = -5.0f;
     }
     if (event->key() == Qt::Key_S) {
-        if (character.getY() + 90 < 595)
+        if (character.getY() + 90 < 620)
             y_inc = 5.0f;
     }
     if (event->key() == Qt::Key_A) {
-        if (character.getX() > -20)
+        if (character.getX() > 0)
             x_inc = -5.0f;
                 //setPos(x()-5,y());
     }
