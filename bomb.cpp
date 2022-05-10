@@ -33,7 +33,12 @@ void Bomb::explode(){
 }
 
 void Bomb::remove(){
-
+        for(int i = 0; i < strength; i++){
+//        name.remove(posX + i, posY);
+//        name.remove(posX, posY + i);
+//        name.remove(posX - i, posY);
+//        name.remove(posX, posY - i);
+    }
 }
 
 void Bomb::draw(float y, float x){

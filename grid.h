@@ -20,6 +20,7 @@ public:
     ~Grid();
 
     void draw();
+    void remove(int x, int y);
     int getRows();
     int getCols();
     int getSpawnRow();

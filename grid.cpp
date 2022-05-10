@@ -98,6 +98,15 @@ void Grid::draw() {
     }
 }
 
+void Grid::remove(int x, int y){
+    float sideLength = tiles[0][0]->getSideLength();
+    if(tiles[y][x]->isSolid() && tiles[y][x]->isBreakable()){
+            delete (tiles[y][x]);
+            tiles[y][x] = temporaryTileConstructor(sideLength);
+//            tiles[y][x] ->isSolid() = false;
+    }
+}
+
 int Grid::getCols() {
     return cols;
 }

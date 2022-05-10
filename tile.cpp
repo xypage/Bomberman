@@ -133,16 +133,6 @@ void Tile::Explode(float x, float y, int strength){
      glEnd();
 }
 
-void Tile::Remove(float x, float y){
-    float full = sideLength;
-    glBegin(GL_POLYGON);
-    glColor3f(255, 255, 255);
-        glVertex2f(x             , y             ); // top right
-        glVertex2f(x - full, y             ); // top left
-        glVertex2f(x - full, y - full); // bottom left
-        glVertex2f(x             , y - full); // bottom right
-     glEnd();
-}
 
 Breakable::Breakable(float _sideLength): Tile(true, true, _sideLength) {};
 
