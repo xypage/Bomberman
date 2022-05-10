@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>img/BombermanUltimate2.png</file>
         <file>img/Bomb.png</file>
+        <file>img/Enemy.png</file>
+        <file>img/MainCharacter.png</file>
+        <file>img/Utility.png</file>
     </qresource>
 </RCC>

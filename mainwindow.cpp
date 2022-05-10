@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(QSize(600, 616));
 
-    character = Movable(0, 0, ":/img/BombermanUltimate2.png", ui->playerLabel, this->height(), this->width());
+    character = Movable(0, 0, ":/img/MainCharacter.png", ui->playerLabel, this->height(), this->width());
     character.setLives(3, ui->lives);
 }
 
@@ -50,7 +50,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
              x_inc = 5.0f;
     }
     if (event->key() == Qt::Key_Space) {
-        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Bomb.png", ui->bombLabel);
+        bomb = Bomb(0.5, 0.5, character.getX(), character.getY(), ":/img/Utility.png", ui->bombLabel);
         bomb.explode();
         qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
     }
