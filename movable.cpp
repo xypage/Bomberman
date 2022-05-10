@@ -56,11 +56,12 @@ void Movable::move(float x, float y){
 };
 
 void Movable::setLives(int lives, QLabel* livesLabel){
+    this -> lives = lives; // Sets lives
     displayLives = "Lives: ";
-    displayLives += QString::number(lives);
+    displayLives += QString::number(this -> lives); // Converts to string
     qDebug() << displayLives;
-    livesLabel->setText(displayLives);
-    if(lives < 3){
+    livesLabel->setText(displayLives); // Updates lives counter
+    if(this -> lives < 3){ // Respawn
         label->move(QPoint(100, 100));
     }
 };
@@ -98,16 +99,17 @@ void Movable::hitbox(Movable enemy, QLabel* livesLabel){
     // if(tileX == enemy.getTileX() && tileY == enemy.getTileX()) {
     //     setLives(this->lives - 1, livesLabel);
     // }
-    if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
+    if(label ->x() == 100 && label -> y() == 100){
+        //This is a safe space / spawn location where lives can't be lost
+    }
+    else if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
         if(label->y() - label->height() <= enemy.label->y() && label->y() - label->height() >= enemy.label->y() - enemy.label->height()){
-            lives--;
-            setLives(lives, livesLabel);
+            setLives(lives - 1, livesLabel);
         }
     }
     else if(label->x() >= enemy.label->x() && label->x() <= enemy.label->x() + enemy.label->width()){
         if(label->y() <= enemy.label->y() && label->y() >= enemy.label->y() - enemy.label->height()){
-            lives--;
-            setLives(lives, livesLabel);
+            setLives(lives - 1, livesLabel);
         }
     }
 }
