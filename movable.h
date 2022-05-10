@@ -8,7 +8,7 @@
 class Movable{
 private:
     // x and y position of the image
-    static int  lives;
+    int lives;
     float x, y, height, width;
     int tileX, tileY;
     QLabel* label;
@@ -22,7 +22,7 @@ public:
     float getY(); // Returns y
     void move(float x, float y);
     void setLives(int lives, QLabel* label);
-    void hitbox(); //Combination ofo width + x, and y + height?
+    void hitbox(Movable enemy, QLabel* livesLabel); //Combination ofo width + x, and y + height?
     int getTileX();
     int getTileY();
     QLabel* getLabel();
