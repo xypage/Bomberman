@@ -29,6 +29,7 @@ public:
 
     void setSideLength(float);
     float getSideLength();
+    void Explode(float x, float y, int strength);
 };
 
 class Breakable: public Tile {

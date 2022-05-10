@@ -105,6 +105,45 @@ void drawBrick(float x, float y, float sideLength, float r1, float g1, float b1,
         glVertex2f(x - quarter, y - full);
     glEnd();
 }
+
+void Tile::Explode(float x, float y, int strength){
+    int r, g, b;
+    if (strength >= 3){
+        r = 255;
+        g = 0;
+        b = 0;
+    }
+    else if(strength == 2){
+        r = 245;
+        g = 60;
+        b = 0;
+    }
+    else{
+        r = 245;
+        g = 165;
+        b = 30;
+    }
+    float full = sideLength;
+    glBegin(GL_POLYGON);
+    glColor3f(r, g, b);
+        glVertex2f(x             , y             ); // top right
+        glVertex2f(x - full, y             ); // top left
+        glVertex2f(x - full, y - full); // bottom left
+        glVertex2f(x             , y - full); // bottom right
+     glEnd();
+}
+
+void Tile::Remove(float x, float y){
+    float full = sideLength;
+    glBegin(GL_POLYGON);
+    glColor3f(255, 255, 255);
+        glVertex2f(x             , y             ); // top right
+        glVertex2f(x - full, y             ); // top left
+        glVertex2f(x - full, y - full); // bottom left
+        glVertex2f(x             , y - full); // bottom right
+     glEnd();
+}
+
 Breakable::Breakable(float _sideLength): Tile(true, true, _sideLength) {};
 
 void Breakable::draw(float y, float x) {
@@ -113,7 +152,7 @@ void Breakable::draw(float y, float x) {
 
 Invincible::Invincible(float _sideLength): Tile(true, false, _sideLength) {};
 
-
 void Invincible::draw(float y, float x) {
     drawBrick(x, y, sideLength, 0.3137254902, 0.3137254902, 0.3137254902, 0.7686274510, 0.7843137255, 0.8078431373);
 }
+
