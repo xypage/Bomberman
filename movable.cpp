@@ -41,6 +41,9 @@ void Movable::setLives(int lives, QLabel* label){
     displayLives += QString::number(lives);
     qDebug() << displayLives;
     label->setText(displayLives);
+    if(lives < 2){
+//        move(100, 100);
+    }
 };
 
 int Movable::getTileX(){
@@ -50,7 +53,15 @@ int Movable::getTileX(){
 int Movable::getTileY(){
     return tileY;
 }
-
-void Movable::hitbox(){
-
-};
+void Movable::hitbox(Movable enemy, QLabel* livesLabel){
+    if(label->x() + label->width() >= enemy.label->x() && label->x() + label->width() <= enemy.label->x() + enemy.label->width()){
+        if(label->y() - label->height() <= enemy.label->y() && label->y() - label->height() >= enemy.label->y() - enemy.label->height()){
+            setLives(this->lives-1, livesLabel);
+        }
+    }
+    else if(label->x() >= enemy.label->x() && label->x() <= enemy.label->x() + enemy.label->width()){
+        if(label->y() <= enemy.label->y() && label->y() >= enemy.label->y() - enemy.label->height()){
+           setLives(this->lives-1, livesLabel);
+        }
+    }
+}

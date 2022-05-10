@@ -70,6 +70,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         qDebug() << '(' << character.getTileX() << ',' << character.getTileY() << ')';
     }
     character.move(x_inc, y_inc);
+    character.hitbox(enemyCharacter, ui->lives);
 
     float yMove = 0.0, xMove = 0.0;
         if (event->key() == Qt::Key_Up) {
